@@ -16,23 +16,17 @@ export default function App() {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}} />
-
-            {/* Grid Background */}
             <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none"
                 style={{ backgroundImage: 'linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
             </div>
-
-            <main className="relative z-10 w-full max-w-3xl mx-auto px-6 py-20 md:py-28">
-
+            <main className="relative z-10 w-full max-w-4xl mx-auto px-6 py-20 md:py-28">
                 <Hero />
-
                 <section className="mb-20">
                     <SectionHeader title="Contribution Log" />
                     <div className="p-1 relative group overflow-hidden">
                         <ContributionGraph />
                     </div>
                 </section>
-
                 <section className="mb-20">
                     <SectionHeader title="Tech Stack" />
                     <div className="flex flex-wrap gap-3">
@@ -43,7 +37,6 @@ export default function App() {
                         ))}
                     </div>
                 </section>
-
                 <section className="mb-20">
                     <SectionHeader title="Featured Projects" />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -73,7 +66,6 @@ export default function App() {
                         />
                     </div>
                 </section>
-
                 <section className="mb-24">
                     <SectionHeader title="Experience" />
                     <div className="space-y-4">
@@ -98,11 +90,8 @@ export default function App() {
                         />
                     </div>
                 </section>
-
                 <ContactSection />
-
                 <Footer />
-
             </main>
         </div>
     );
