@@ -1,65 +1,109 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+import Hero from './components/Hero';
+import SectionHeader from './components/SectionHeader';
+import ContributionGraph from './components/ContributionGraph';
+import ProjectCard from './components/ProjectCard';
+import ExperienceCard from './components/ExperienceCard';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
+
+export default function App() {
+    return (
+        <div className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-zinc-200 selection:text-black relative">
+            <style dangerouslySetInnerHTML={{
+                __html: `
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}} />
+
+            {/* Grid Background */}
+            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none"
+                style={{ backgroundImage: 'linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+            </div>
+
+            <main className="relative z-10 w-full max-w-3xl mx-auto px-6 py-20 md:py-28">
+
+                <Hero />
+
+                <section className="mb-20">
+                    <SectionHeader title="Contribution Log" />
+                    <div className="p-1 relative group overflow-hidden">
+                        <ContributionGraph />
+                    </div>
+                </section>
+
+                <section className="mb-20">
+                    <SectionHeader title="Tech Stack" />
+                    <div className="flex flex-wrap gap-3">
+                        {['TypeScript', 'JavaScript', 'React', 'Next.js', 'Node.js', 'PHP', 'WordPress', 'Laravel', 'Tailwind CSS', 'PostgreSQL', 'MySQL', 'Redis', 'Docker', 'Git'].map(tech => (
+                            <span key={tech} className="px-3 py-1.5 text-xs text-zinc-300 bg-zinc-900 border border-zinc-800 hover:border-zinc-500 hover:text-white transition-colors cursor-default rounded-md">
+                                {tech}
+                            </span>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="mb-20">
+                    <SectionHeader title="Featured Projects" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <ProjectCard
+                            title="APKTemplates Store"
+                            desc="Next.js storefront with Paddle/PayPal payments and automated Dropbox delivery for digital assets."
+                            tags={['Next.js', 'Prisma', 'Paddle']}
+                            link="https://apktemplates.com"
+                        />
+                        <ProjectCard
+                            title="Play Store Sync SaaS"
+                            desc="B2B Node.js service detecting outdated app versions via Google Play scraping and Bull Queue."
+                            tags={['Node.js', 'Redis', 'PostgreSQL']}
+                            link="#"
+                        />
+                        <ProjectCard
+                            title="GitHub Auto-Deploy"
+                            desc="Custom Actions pipeline handling version bumping, secure ZIP generation, and webhook notifications."
+                            tags={['GitHub Actions', 'Bash', 'Next.js']}
+                            link="#"
+                        />
+                        <ProjectCard
+                            title="AT Panel Framework"
+                            desc="Proprietary backend configuration framework powering 12 premium WordPress themes."
+                            tags={['WordPress', 'PHP', 'AJAX']}
+                            link="#"
+                        />
+                    </div>
+                </section>
+
+                <section className="mb-24">
+                    <SectionHeader title="Experience" />
+                    <div className="space-y-4">
+                        <ExperienceCard
+                            title="Founder & Lead Developer"
+                            company="S&S Technology · APKTemplates"
+                            date="Feb 2018 - Present"
+                            bullets={[
+                                "Architected and launched 12 premium WordPress themes targeting the high-traffic APK niche.",
+                                "Engineered custom backend solutions (AT Panel) to streamline theme configuration for end users.",
+                                "Developed a high-performance Next.js storefront to handle global sales and automated digital delivery."
+                            ]}
+                        />
+                        <ExperienceCard
+                            title="Freelance Full-Stack Developer"
+                            company="Custom Client Projects"
+                            date="2018 - Ongoing"
+                            bullets={[
+                                "Deliver custom WordPress theme development, plugin creation, and performance optimization.",
+                                "Build scalable Node.js and Next.js applications, transitioning legacy PHP platforms to modern stacks."
+                            ]}
+                        />
+                    </div>
+                </section>
+
+                <ContactSection />
+
+                <Footer />
+
+            </main>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }
